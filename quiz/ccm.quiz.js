@@ -916,7 +916,7 @@
                 e.onload = function () {
                     resolve();
                 };
-                e.src = "./ccm-loader.js";
+                e.src = "https://oberpro.github.io/ccm_loader/ccm_loader.js";
             } else {
                 resolve();
             }
