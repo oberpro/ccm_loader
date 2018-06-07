@@ -24,7 +24,7 @@
 
         name: 'quiz',
         // ccm: 'https://ccmjs.github.io/ccm/versions/ccm-15.0.2.js',
-        ccm: 'https://akless.github.io/ccm/ccm.js',
+        ccm: 'https://ccmjs.github.io/ccm/ccm.min.js',
 
         config: {
 
