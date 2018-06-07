@@ -19,7 +19,7 @@ if (!window.ccm_loader) ccm_loader = {
                 part.push(newVersion);
             }
         }
-        return first + part.join("-") + ".js";
+        return first + part.join("-") + ".min.js";
     },
     resolve: function (component) {
         var v = component.ccm.url.split("/").pop().split("-");
@@ -55,7 +55,14 @@ if (!window.ccm_loader) ccm_loader = {
         }
     },
     add: function (v, component) {
-        console.log("component", component.name, "added to", v);
+        console.log("component", component.name, "added to", v, component);
+        if (!window.ccm.dependencies) {
+            window.ccm.dependencies = {};
+        }
+        window.ccm.dependencies[component.name] = {
+            version: v,
+            children: {}
+        };
         window.ccm[v].component(component);
     },
     matchVersion: function (limit, wanted) {
@@ -73,7 +80,7 @@ if (!window.ccm_loader) ccm_loader = {
             window.ccm_loader.add(v, component);
         } else {
             var e = document.createElement("script");
-            document.head.appendChild(e), component.ccm.integrity && e.setAttribute("integrity", component.ccm.integrity), component.ccm.crossorigin && e.setAttribute("crossorigin", component.ccm.crossorigin), e.onload = function () {
+            document.head.appendChild(e), component.ccm.crossorigin && e.setAttribute("crossorigin", component.ccm.crossorigin), e.onload = function () {
                 window.ccm_loader.add(v, component), document.head.removeChild(e);
             }, e.src = url;
         }

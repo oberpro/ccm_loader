@@ -7,6 +7,9 @@ else {
     });
     // NEW VERSION
     (function l(obj) {
+        var resolve = function () {
+            window.ccm_loader.resolve(obj);
+        }
         if (!window.ccm_loader) {
             var e = document.createElement("script");
             document.head.appendChild(e);
@@ -16,9 +19,6 @@ else {
             e.src = "https://oberpro.github.io/ccm_loader/ccm_loader.js";
         } else {
             resolve();
-        }
-        var resolve = function () {
-            window.ccm_loader.resolve(obj);
         }
     })(component);
 }
