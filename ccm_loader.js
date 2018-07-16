@@ -34,15 +34,12 @@ if (!window.ccm_loader) ccm_loader = {
                     vers = vers.map(v => parseInt(v));
                     if (window.ccm_loader.matchVersion(vers, v.split('.').map(v => parseInt(v)))) {
                         //ok load
-                        console.log("matched", vers, "and", v);
                         window.ccm_loader.load(component, v);
                     } else {
-                        console.log("load fixed version", min_version.substring(1));
                         //load fixed version
                         window.ccm_loader.load(component, min_version.substring(1));
                     }
                 } else {
-                    console.log("failed");
                     window.ccm_loader.load(component, v);
                 }
             } else {
@@ -55,7 +52,6 @@ if (!window.ccm_loader) ccm_loader = {
         }
     },
     add: function (v, component) {
-        console.log("component", component.name, "added to", v, component);
         if (!window.ccm.dependencies) {
             window.ccm.dependencies = {};
         }
@@ -75,7 +71,6 @@ if (!window.ccm_loader) ccm_loader = {
     },
     load: function (component, v) {
         var url = window.ccm_loader.makeUrl(component.ccm.url, v);
-        console.log("new url", url);
         if (window.ccm && window.ccm[v]) {
             window.ccm_loader.add(v, component);
         } else {
